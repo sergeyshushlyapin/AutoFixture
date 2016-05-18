@@ -5879,5 +5879,25 @@ namespace Ploeh.AutoFixtureUnitTest
             var actual = fixture.Create<Expression<Func<object>>>();
             Assert.NotNull(actual.Compile()());
         }
+
+        [Fact]
+        public void CreateAvoidsObsoleteConstructors()
+        {
+            var fixture = new Fixture();
+            fixture.Create<TypeWithThrowingObsoleteConstructor>();
+        }
+
+        [Fact]
+        public void CreateObsoleteConstructorIfForced()
+        {
+            var fixture = new Fixture();
+            fixture.Customize(
+                new ConstructorCustomization(
+                    typeof(TypeWithThrowingObsoleteConstructor), new ModestConstructorQuery()));
+
+            var exception = Assert.Throws<TargetInvocationException>(
+                 () => fixture.Create<TypeWithThrowingObsoleteConstructor>());
+            Assert.IsType<NotSupportedException>(exception.InnerException);
+        }
     }
 }

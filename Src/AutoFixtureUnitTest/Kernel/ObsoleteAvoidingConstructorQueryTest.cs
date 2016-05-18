@@ -25,7 +25,7 @@ namespace Ploeh.AutoFixtureUnitTest.Kernel
         [Fact]
         public void SelectMethodsReturnsSourceQueryMethodsOrderedByObsoleteAttribute()
         {
-            var typeWithObsoleteConstructor = typeof(TypeWithObsoleteModestConstructor);
+            var typeWithObsoleteConstructor = typeof(TypeWithThrowingObsoleteConstructor);
             var expectedConstructors = from ci in typeWithObsoleteConstructor.GetConstructors()
                                        let attributes = ci.GetCustomAttributes(typeof(ObsoleteAttribute), false)
                                        orderby attributes.Length ascending
