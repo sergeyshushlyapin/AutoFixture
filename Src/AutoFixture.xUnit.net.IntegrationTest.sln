@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFixture.xUnit.net", "Au
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFixture.xUnit.net.UnitTest", "AutoFixture.xUnit.net.UnitTest\AutoFixture.xUnit.net.UnitTest.csproj", "{14FADDF9-F0D2-4BD4-B285-FDDAB5762CC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFixture.xUnit.net.NSubstitute", "AutoFixture.xUnit.net.NSubstitute\AutoFixture.xUnit.net.NSubstitute.csproj", "{129CB909-F54A-41F6-8A70-7EF0CDE27B7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoFixture.xUnit.net.IntegrationTest", "AutoFixture.xUnit.net.IntegrationTest\AutoFixture.xUnit.net.IntegrationTest.csproj", "{129CB909-F54A-41F6-8A70-7EF0CDE27B7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

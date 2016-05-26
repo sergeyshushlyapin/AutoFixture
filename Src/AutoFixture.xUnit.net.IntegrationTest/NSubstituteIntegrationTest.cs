@@ -5,9 +5,9 @@ using Ploeh.TestTypeFoundation;
 using Xunit;
 using Xunit.Extensions;
 
-namespace AutoFixture.xUnit.net.NSubstitute
+namespace AutoFixture.xUnit.net.IntegrationTest
 {
-    public class FrozenSubstituteTest
+    public class NSubstituteIntegrationTest
     {
         [Theory, AutoNSubstituteData]
         public void CreateConcreteTypeSubstitute([Substitute] ConcreteType sut)
