@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using NUnit.Framework;
 using Ploeh.AutoFixture.NUnit2.Addins;
 using Ploeh.AutoFixture.Kernel;
 
@@ -92,6 +94,7 @@ namespace Ploeh.AutoFixture.NUnit2
             }
 
             var specimens = new List<object>();
+
             foreach (var p in method.GetParameters())
             {
                 CustomizeFixture(p);
@@ -100,7 +103,8 @@ namespace Ploeh.AutoFixture.NUnit2
                 specimens.Add(specimen);
             }
 
-            return new[] { specimens.ToArray() };
+            var parametrizedData = GetParametrizedData(method, specimens.ToArray());
+            return parametrizedData;
         }
 
         private void CustomizeFixture(ParameterInfo p)
@@ -152,6 +156,48 @@ namespace Ploeh.AutoFixture.NUnit2
             }
 
             return (IFixture)ctor.Invoke(null);
+        }
+
+        private static IEnumerable<object[]> GetParametrizedData(MethodInfo method, object[] specimens)
+        {
+            var parametrized = method.GetParameters()
+                .Any(p => p.GetCustomAttributes(typeof(ValuesAttribute), false).Any());
+
+            if (!parametrized)
+            {
+                return new[] { specimens.ToArray() };
+            }
+
+            var parametrizedspecimens = new List<IEnumerable<object[]>>();
+
+            var parameters = method.GetParameters();
+            for (var i = 0; 0 < parameters.Length - 1; i++)
+            {
+                var p = parameters[i];
+                var valuesAttributes = p.GetCustomAttributes(typeof(ValuesAttribute), false);
+                if (!valuesAttributes.Any())
+                {
+                    continue;
+                }
+
+                var valuesAttribute = (ValuesAttribute)valuesAttributes.First();
+                var data = valuesAttribute.GetData(p);
+                var set = GetParametrizedDataSet(specimens, i, data);
+                parametrizedspecimens.Add(set);
+            }
+
+            return new[] { parametrizedspecimens.ToArray() };
+        }
+
+        private static IEnumerable<object[]> GetParametrizedDataSet(object[] sourceSpecimens, int parameterIndex, IEnumerable data)
+        {
+            foreach (var parameterValue in data)
+            {
+                var ps = new object[sourceSpecimens.Length];
+                sourceSpecimens.CopyTo(ps, 0);
+                ps[parameterIndex] = parameterValue;
+                yield return ps;
+            }
         }
     }
 }

@@ -350,5 +350,11 @@ namespace Ploeh.AutoFixture.NUnit2.UnitTest
         {
             Assert.AreNotEqual(p1, p2.Field);
         }
+
+        [Test, AutoData]
+        public void FixtureIgnoresParameterWithValuesAttribute([Values(1, -1)] int num)
+        {
+            Assert.True(num == -1 || num == 1);
+        }
     }
 }
