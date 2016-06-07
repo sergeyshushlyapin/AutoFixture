@@ -80,7 +80,7 @@
     <Compile Include="CompositeDataAttribute.cs" />
     <Compile Include="CustomizeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValuesAttributeOmitter.cs" />
+    <Compile Include="ValuesParameterSpecification.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="CodeAnalysisDictionary.xml" />

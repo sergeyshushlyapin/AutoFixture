@@ -107,7 +107,7 @@ namespace Ploeh.AutoFixture.NUnit2
 
         private void OmitValuesAttributeParameters()
         {
-            var valuesOmitter = new ValuesAttributeOmitter();
+            var valuesOmitter = new Omitter(new ValuesParameterSpecification());
             this.Fixture.Customizations.Insert(0, valuesOmitter);
         }
 

@@ -57,7 +57,6 @@
     <Compile Include="DelegatingCustomizeAttribute.cs" />
     <Compile Include="DelegatingFixture.cs" />
     <Compile Include="DelegatingSpecimenBuilder.cs" />
-    <Compile Include="DelegatingSpecimenContext.cs" />
     <Compile Include="DependencyConstraints.cs" />
     <Compile Include="FakeCustomAttributeProvider.cs" />
     <Compile Include="FakeDataAttribute.cs" />
@@ -74,7 +73,7 @@
     <Compile Include="ProvidedAttribute.cs" />
     <Compile Include="Scenario.cs" />
     <Compile Include="TypeWithCustomizationAttributes.cs" />
-    <Compile Include="ValuesAttributeOmitterTest.cs" />
+    <Compile Include="ValuesParameterSpecificationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AutoFixture.NUnit2.Addins\AutoFixture.NUnit2.Addins.csproj">
