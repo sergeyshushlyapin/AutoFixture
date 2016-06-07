@@ -91,6 +91,8 @@ namespace Ploeh.AutoFixture.NUnit2
                 throw new ArgumentNullException("method");
             }
 
+            this.OmitValuesAttributeParameters();
+
             var specimens = new List<object>();
             foreach (var p in method.GetParameters())
             {
@@ -101,6 +103,12 @@ namespace Ploeh.AutoFixture.NUnit2
             }
 
             return new[] { specimens.ToArray() };
+        }
+
+        private void OmitValuesAttributeParameters()
+        {
+            var valuesOmitter = new ValuesAttributeOmitter();
+            this.Fixture.Customizations.Insert(0, valuesOmitter);
         }
 
         private void CustomizeFixture(ParameterInfo p)
