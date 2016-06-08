@@ -67,6 +67,7 @@ namespace Ploeh.AutoFixture
                     new TerminatingWithPathSpecimenBuilder(new TracingBuilder(new CompositeSpecimenBuilder(
                         new CustomizationNode(
                             new CompositeSpecimenBuilder(
+                                new DefaultTypeValueGenerator(),
                                 new FilteringSpecimenBuilder(
                                     new FixedBuilder(
                                         this),
@@ -116,6 +117,7 @@ namespace Ploeh.AutoFixture
                                 CreateDefaultValueBuilder(CultureInfo.InvariantCulture),
                                 CreateDefaultValueBuilder(Encoding.UTF8),
                                 CreateDefaultValueBuilder(IPAddress.Loopback))),
+                        new DefaultTypeValueGenerator(),
                         new Postprocessor(
                             new AutoPropertiesTarget(
                                 new CompositeSpecimenBuilder(

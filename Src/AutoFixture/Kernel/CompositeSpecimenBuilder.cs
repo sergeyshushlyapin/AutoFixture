@@ -58,7 +58,11 @@ namespace Ploeh.AutoFixture.Kernel
             for (int i = 0; i < composedBuilders.Length; i++)
             {
                 var result = composedBuilders[i].Create(request, context);
-                if (!(result is NoSpecimen)) return result;
+                if (!(result is NoSpecimen))
+                    //&& !(result is OmitSpecimen))
+                {
+                    return result;
+                }
             }
 
 #pragma warning disable 618

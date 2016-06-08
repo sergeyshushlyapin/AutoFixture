@@ -5903,5 +5903,29 @@ namespace Ploeh.AutoFixtureUnitTest
             var actual = fixture.Create<Expression<Func<object>>>();
             Assert.NotNull(actual.Compile()());
         }
+
+        [Fact]
+        public void CreateWithOmittedRequestReturnsNull()
+        {
+            var fixture = new Fixture();
+            var overallOmitter = new Omitter(new TrueRequestSpecification());
+            fixture.Customizations.Insert(0, overallOmitter);
+
+            var result = fixture.Create<object>();
+
+            Assert.Null(result);
+        }
+
+        [Fact]
+        public void CreateWithOmittedRequestReturnsNull1()
+        {
+            var fixture = new Fixture();
+            var overallOmitter = new Omitter(new ExactTypeSpecification(typeof(ConcreteType)));
+            fixture.Customizations.Insert(0, overallOmitter);
+
+            var result = fixture.Create<ConcreteType>();
+
+            Assert.Null(result);
+        }
     }
 }

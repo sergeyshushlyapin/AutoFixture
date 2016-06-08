@@ -56,6 +56,11 @@ namespace Ploeh.AutoFixture.Kernel
                 throw new ArgumentNullException(nameof(context));
             }
 
+            if (!IsValueValid(request))
+            {
+                return new NoSpecimen();
+            }
+
             foreach (var ci in this.GetConstructors(request))
             {
                 var paramValues = (from pi in ci.Parameters

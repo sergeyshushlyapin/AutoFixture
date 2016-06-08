@@ -264,6 +264,12 @@ namespace Ploeh.AutoFixture.Kernel
             if (specimen == null)
                 return specimen;
 
+            var os = specimen as OmitSpecimen;
+            if (os != null)
+            {
+                //return null;
+            }
+
             var ns = specimen as NoSpecimen;
             if (ns != null)
                 return ns;

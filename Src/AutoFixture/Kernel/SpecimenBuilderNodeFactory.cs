@@ -52,6 +52,9 @@ namespace Ploeh.AutoFixture.Kernel
         {
             return new FilteringSpecimenBuilder(
                 new CompositeSpecimenBuilder(
+                    new OmitSpecimenOutputGuard(
+                        factory
+                        ),
                     new NoSpecimenOutputGuard(
                         factory,
                         new InverseRequestSpecification(
@@ -61,6 +64,30 @@ namespace Ploeh.AutoFixture.Kernel
                 new OrRequestSpecification(
                     new SeedRequestSpecification(targetType),
                     new ExactTypeSpecification(targetType)));
+        }
+    }
+
+    public class OmitSpecimenOutputGuard : ISpecimenBuilder
+    {
+        private readonly ISpecimenBuilder Builder;
+
+        public OmitSpecimenOutputGuard(ISpecimenBuilder factory)
+        {
+            Builder = factory;
+        }
+
+        public object Create(object request, ISpecimenContext context)
+        {
+            var result = this.Builder.Create(request, context);
+
+            if (result is OmitSpecimen
+            //   && this.Specification.IsSatisfiedBy(request))
+           )
+            {
+                return null;
+            }
+
+            return new NoSpecimen();
         }
     }
 }
