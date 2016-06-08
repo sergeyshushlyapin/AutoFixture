@@ -73,6 +73,7 @@
     <Compile Include="ProvidedAttribute.cs" />
     <Compile Include="Scenario.cs" />
     <Compile Include="TypeWithCustomizationAttributes.cs" />
+    <Compile Include="TypeWithParametrizedTestMethods.cs" />
     <Compile Include="ValuesParameterSpecificationTest.cs" />
   </ItemGroup>
   <ItemGroup>

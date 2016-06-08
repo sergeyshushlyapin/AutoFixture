@@ -191,5 +191,17 @@ namespace Ploeh.AutoFixture.NUnit2.UnitTest
             Assert.True(customizationLog[1] is FreezeOnMatchCustomization);
             // Teardown
         }
+
+        [Test]
+        public void GetDataReturnsValuesAttributeData()
+        {
+            var method = typeof(TypeWithParametrizedTestMethods).GetMethod("MethodWithValuesAttribute");
+            var expected = new[] { new object[] { -1, 1 } };
+            var sut = new AutoDataAttribute();
+
+            var actual = sut.GetData(method);
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
