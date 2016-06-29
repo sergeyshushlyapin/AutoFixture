@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using Ploeh.AutoFixture.Kernel;
 
@@ -140,7 +139,8 @@ namespace Ploeh.AutoFixture
         private ISpecimenBuilder FreezeTargetType(IFixture fixture)
         {
             var context = new SpecimenContext(fixture);
-            var specimen = context.Resolve(this.TargetType);
+            var request = (object)this.ParameterInfo ?? this.TargetType;
+            var specimen = context.Resolve(request);
             return new FixedBuilder(specimen);
         }
     }
