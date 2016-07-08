@@ -57,6 +57,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\..\Packages\xunit.abstractions.2.0.0\lib\net35\xunit.abstractions.dll</HintPath>
@@ -73,6 +74,7 @@
     <Compile Include="CustomizeAttribute.cs" />
     <Compile Include="CustomizeAttributeComparer.cs" />
     <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="FreezeOnParameterMatchCustomization.cs" />
     <Compile Include="FrozenAttribute.cs" />
     <Compile Include="GreedyAttribute.cs" />
     <Compile Include="Matching.cs" />
