@@ -30,6 +30,7 @@ namespace Ploeh.AutoFixture
         /// <exception cref="ArgumentNullException">
         /// <paramref name="targetType"/> is <see langword="null"/>.
         /// </exception>
+        [Obsolete("This constructor has been deprecated. Please use constructor that takes IReflectionElement parameter.")]
         public FreezeOnMatchCustomization(Type targetType)
             : this(targetType, new ExactTypeSpecification(targetType))
         {
@@ -46,6 +47,7 @@ namespace Ploeh.AutoFixture
         /// <exception cref="ArgumentNullException">
         /// <paramref name="targetType"/> or <paramref name="matcher"/> is null.
         /// </exception>
+        [Obsolete("This constructor has been deprecated. Please use constructor that takes IReflectionElement parameter.")]
         public FreezeOnMatchCustomization(
             Type targetType,
             IRequestSpecification matcher)
@@ -93,6 +95,7 @@ namespace Ploeh.AutoFixture
         /// <summary>
         /// The <see cref="Type"/> of the frozen specimen.
         /// </summary>
+        [Obsolete("This property has been deprecated. Please use ReflectionElement instead.")]
         public Type TargetType { get; }
 
         /// <summary>
