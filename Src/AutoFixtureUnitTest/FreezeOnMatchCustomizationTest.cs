@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Ploeh.Albedo;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Kernel;
 using Ploeh.AutoFixtureUnitTest.Kernel;
@@ -474,6 +473,10 @@ namespace Ploeh.AutoFixtureUnitTest
             Assert.Same(parameter, property);
             Assert.Same(property, field);
             // Teardown
+        }
+
+        private class NullReflectionElement : IReflectionElement
+        {
         }
     }
 }

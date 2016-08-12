@@ -100,6 +100,7 @@
     <Compile Include="DomainName.cs" />
     <Compile Include="DomainNameGenerator.cs" />
     <Compile Include="ElementsBuilder.cs" />
+    <Compile Include="IReflectionElement.cs" />
     <Compile Include="Kernel\SortedDictionarySpecification.cs" />
     <Compile Include="Kernel\SortedSetSpecification.cs" />
     <Compile Include="LambdaExpressionGenerator.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="Kernel\ValueTypeSpecification.cs" />
     <Compile Include="Kernel\MutableValueTypeWarningThrower.cs" />
     <Compile Include="NoAutoPropertiesCustomization.cs" />
+    <Compile Include="ParameterInfoElement.cs" />
     <Compile Include="RandomBooleanSequenceGenerator.cs" />
     <Compile Include="CharSequenceGenerator.cs" />
     <Compile Include="CollectionFiller.cs" />
@@ -330,6 +332,7 @@
     <Compile Include="Kernel\ThrowingRecursionGuard.cs" />
     <Compile Include="DefaultRelays.cs" />
     <Compile Include="TracingBehavior.cs" />
+    <Compile Include="TypeElement.cs" />
     <Compile Include="TypeElementRelay.cs" />
     <Compile Include="TypeFilter.cs" />
     <Compile Include="TypeGenerator.cs" />

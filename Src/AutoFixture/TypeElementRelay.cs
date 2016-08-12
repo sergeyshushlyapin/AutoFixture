@@ -1,6 +1,5 @@
 using System;
 using System.Reflection;
-using Ploeh.Albedo;
 using Ploeh.AutoFixture.Kernel;
 
 namespace Ploeh.AutoFixture

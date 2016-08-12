@@ -1,5 +1,4 @@
 using System;
-using Ploeh.Albedo;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Kernel;
 using Ploeh.AutoFixtureUnitTest.Kernel;
