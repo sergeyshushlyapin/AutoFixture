@@ -458,6 +458,19 @@ namespace Ploeh.AutoFixture.AutoNSubstitute.UnitTest
         }
 
         [Fact]
+        public void PropertiesOmittingSpecimenReturnsCorrectResult1()
+        {
+            var fixture = new Fixture();
+            fixture.Customizations.Add(new Omitter(new ExactTypeSpecification(typeof(string))));
+            var sut = fixture.Create<ConcreteTypeWithVirtualMembers>();
+
+            var result = sut.VirtualProperty;
+
+            Assert.Equal(string.Empty, result);
+        }
+
+
+        [Fact]
         public void MethodsOmittingSpecimenReturnsCorrectResult()
         {
             var fixture = new Fixture().Customize(new AutoConfiguredNSubstituteCustomization());

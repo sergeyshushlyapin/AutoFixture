@@ -204,8 +204,21 @@ namespace Ploeh.AutoFixture.AutoNSubstitute
 
                         callRouter.SetRoute(state => new Route(
                             new ICallHandler[] {
-                                new NoSetupCallbackHandler(state, () => {
-                                    var value = Resolve(methodInfo.ReturnType);
+                                new NoSetupCallbackHandler(state, () =>
+                                {
+                                    object value = null;
+
+                                    if (methodInfo.Name.StartsWith("get_"))
+                                    {
+                                        var propName = methodInfo.Name.Replace("get_", "");
+                                        var propertyInfo = methodInfo.ReflectedType.GetProperty(propName);
+                                        value = Resolve(propertyInfo);
+                                    }
+                                    else
+                                    {
+                                         value = Resolve(methodInfo.ReturnType);
+                                    }
+
                                     if (value is OmitSpecimen)
                                         return;
 
@@ -219,7 +232,7 @@ namespace Ploeh.AutoFixture.AutoNSubstitute
                     });
             }
 
-            private object Resolve(Type type)
+            private object Resolve(object type)
             {
                 // NSubstitute uses a static property SubstitutionContext.Current
                 // to get and set the state of its substitutes.
