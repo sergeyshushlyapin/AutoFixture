@@ -37,7 +37,7 @@ namespace Ploeh.AutoFixture
         /// <returns>An anonymous object of type <typeparamref name="T"/>.</returns>
         /// <remarks>Obsolete: Please move over to using <see cref="Create{T}(Ploeh.AutoFixture.Kernel.ISpecimenContext)">Create&lt;T&gt;()</see> as this method will be removed in the next release</remarks>
         [Obsolete("Please move over to using Create<T>() as this method will be removed in the next release")]
-         public static T CreateAnonymous<T>(this ISpecimenContext context)
+        public static T CreateAnonymous<T>(this ISpecimenContext context)
         {
             return Create<T>(context);
         }
@@ -87,7 +87,7 @@ namespace Ploeh.AutoFixture
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Supports type inferencing.")]
         public static T Create<T>(this IPostprocessComposer<T> composer)
         {
-            return Create<T>((ISpecimenBuilder) composer);
+            return Create<T>((ISpecimenBuilder)composer);
         }
 
         /// <summary>
@@ -122,7 +122,13 @@ namespace Ploeh.AutoFixture
                 throw new ArgumentNullException(nameof(context));
             }
 
-            return (T)context.Resolve(new SeededRequest(typeof(T), seed));
+            var specimen = context.Resolve(new SeededRequest(typeof(T), seed));
+            if (specimen is OmitSpecimen)
+            {
+                return default(T);
+            }
+
+            return (T)specimen;
         }
 
         /// <summary>

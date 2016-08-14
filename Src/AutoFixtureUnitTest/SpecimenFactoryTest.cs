@@ -336,7 +336,7 @@ namespace Ploeh.AutoFixtureUnitTest
             var expectedResult = Enumerable.Range(1, 10);
             var container = new DelegatingSpecimenContext
             {
-                OnResolve = r => r.Equals(new MultipleRequest(new SeededRequest(typeof(int), 0))) ? 
+                OnResolve = r => r.Equals(new MultipleRequest(new SeededRequest(typeof(int), 0))) ?
                     (object)expectedResult.Cast<object>() :
 #pragma warning disable 618
                     new NoSpecimen(r)
@@ -464,7 +464,7 @@ namespace Ploeh.AutoFixtureUnitTest
         {
             // Fixture setup
             var seed = TimeSpan.FromMinutes(21);
-            var expected = 
+            var expected =
                 Enumerable.Range(42, 7).Select(i => TimeSpan.FromHours(i));
             var builder = new DelegatingSpecimenBuilder();
             builder.OnCreate = (r, c) =>
@@ -533,7 +533,7 @@ namespace Ploeh.AutoFixtureUnitTest
         {
             // Fixture setup
             var count = 31;
-            var expected = 
+            var expected =
                 Enumerable.Range(1, count).Select(i => i.ToString());
             var builder = new DelegatingSpecimenBuilder();
             builder.OnCreate = (r, c) =>
@@ -646,6 +646,17 @@ namespace Ploeh.AutoFixtureUnitTest
                 expected.SequenceEqual(actual),
                 "Sequences not equal.");
             // Teardown
+        }
+
+        [Fact]
+        public void CreateForOmitSpecimenReturnsNull()
+        {
+            var builder = new DelegatingSpecimenBuilder
+            {
+                OnCreate = (r, c) => new OmitSpecimen()
+            };
+            var actual = builder.Create<object>();
+            Assert.Null(actual);
         }
     }
 }
