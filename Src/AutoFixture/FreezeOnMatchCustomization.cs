@@ -60,6 +60,7 @@ namespace Ploeh.AutoFixture
             }
 
             this.TargetType = targetType;
+            this.Request = targetType;
             this.Matcher = matcher;
         }
 
@@ -73,6 +74,11 @@ namespace Ploeh.AutoFixture
         /// that will be satisfied by the frozen specimen.
         /// </summary>
         public IRequestSpecification Matcher { get; }
+
+        /// <summary>
+        /// The request used to resolve specimens. By default that is TargetType.
+        /// </summary>
+        protected object Request { get; set; }
 
         /// <summary>
         /// Customizes the specified fixture.
@@ -100,7 +106,7 @@ namespace Ploeh.AutoFixture
         private ISpecimenBuilder FreezeTargetType(IFixture fixture)
         {
             var context = new SpecimenContext(fixture);
-            var specimen = context.Resolve(this.TargetType);
+            var specimen = context.Resolve(this.Request);
             return new FixedBuilder(specimen);
         }
     }
