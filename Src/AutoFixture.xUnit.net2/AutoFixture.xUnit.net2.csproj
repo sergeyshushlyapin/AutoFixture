@@ -73,6 +73,7 @@
     <Compile Include="CustomizeAttribute.cs" />
     <Compile Include="CustomizeAttributeComparer.cs" />
     <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="FreezeOnParameterMatchCustomization.cs" />
     <Compile Include="FrozenAttribute.cs" />
     <Compile Include="GreedyAttribute.cs" />
     <Compile Include="Matching.cs" />
