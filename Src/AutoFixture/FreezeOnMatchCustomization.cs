@@ -43,7 +43,7 @@ namespace Ploeh.AutoFixture
         /// that will be satisfied by the frozen specimen.
         /// </param>
         /// <exception cref="ArgumentNullException">
-        /// <paramref name="targetType"/> or<paramref name="matcher"/> is null.
+        /// <paramref name="targetType"/> or <paramref name="matcher"/> is null.
         /// </exception>
         public FreezeOnMatchCustomization(
             Type targetType,
@@ -65,6 +65,35 @@ namespace Ploeh.AutoFixture
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="FreezeOnMatchCustomization"/> class.
+        /// </summary>
+        /// <param name="request">The request used to create a specimen to freeze.</param>
+        /// <param name="matcher">
+        /// The <see cref="IRequestSpecification"/> used to match the requests
+        /// that will be satisfied by the frozen specimen.
+        /// </param>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="request"/> or <paramref name="matcher"/> is null.
+        /// </exception>
+        protected FreezeOnMatchCustomization(
+            object request,
+            IRequestSpecification matcher)
+        {
+            if (request == null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
+            if (matcher == null)
+            {
+                throw new ArgumentNullException(nameof(matcher));
+            }
+
+            this.Request = request;
+            this.Matcher = matcher;
+        }
+
+        /// <summary>
         /// The <see cref="Type"/> of the frozen specimen.
         /// </summary>
         public Type TargetType { get; }
@@ -78,7 +107,7 @@ namespace Ploeh.AutoFixture
         /// <summary>
         /// The request used to resolve specimens. By default that is TargetType.
         /// </summary>
-        protected object Request { get; set; }
+        protected object Request { get; }
 
         /// <summary>
         /// Customizes the specified fixture.

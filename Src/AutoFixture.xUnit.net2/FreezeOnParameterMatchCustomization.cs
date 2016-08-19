@@ -8,9 +8,8 @@ namespace Ploeh.AutoFixture.Xunit2
         public FreezeOnParameterMatchCustomization(
             ParameterInfo parameter,
             IRequestSpecification matcher)
-            : base(parameter.ParameterType, matcher)
+            : base(parameter, matcher)
         {
-            this.Request = parameter;
         }
     }
 }
