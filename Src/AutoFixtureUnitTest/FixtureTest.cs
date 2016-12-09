@@ -5160,7 +5160,7 @@ namespace Ploeh.AutoFixtureUnitTest
             // Fixture setup
             var fixture = new Fixture();
             // Exercise system
-            var result = fixture.Create<SortedDictionary<string,object>>();
+            var result = fixture.Create<SortedDictionary<string, object>>();
             // Verify outcome
             Assert.NotEmpty(result);
             // Teardown
@@ -5172,7 +5172,7 @@ namespace Ploeh.AutoFixtureUnitTest
             // Fixture setup
             var fixture = new Fixture();
             // Exercise system
-            var result = fixture.Create<SortedList<int,string>>();
+            var result = fixture.Create<SortedList<int, string>>();
             // Verify outcome
             Assert.NotEmpty(result);
             // Teardown
@@ -5926,6 +5926,16 @@ namespace Ploeh.AutoFixtureUnitTest
             var fixture = new Fixture();
             var actual = fixture.Create<Expression<Func<object>>>();
             Assert.NotNull(actual.Compile()());
+        }
+
+        [Fact]
+        public void CanSetNestedProeprty()
+        {
+            var expected = new object();
+            var fixture = new Fixture();
+            fixture.Build<TypeWithComplexTypeProperty>()
+                .With(x => x.Property.Property5, expected)
+                .Create();
         }
     }
 }

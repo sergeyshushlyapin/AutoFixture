@@ -113,6 +113,7 @@
     <Compile Include="TripleParameterType.cs" />
     <Compile Include="TriplePropertyHolder.cs" />
     <Compile Include="TriState.cs" />
+    <Compile Include="TypeWithComplexTypeProperty.cs" />
     <Compile Include="TypeWithConcreteParameterMethod.cs" />
     <Compile Include="TypeWithEmptyEnumField.cs" />
     <Compile Include="TypeWithFactoryMethod.cs" />
